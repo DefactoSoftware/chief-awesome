@@ -2,27 +2,18 @@
 
 ## Getting Started
 
+(Assuming you have a machine equipped with Ruby, Postgres, etc.)
+
 After you have cloned this repo, run this setup script to set up your machine
 with the necessary dependencies to run and test this app:
 
     % ./bin/setup
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+We currently only support Yammer to authenticate. To login on your local
+computer go to [Yammer developers docs](https://developer.yammer.com/docs/getting-started) to get started.
 
-[this script]: https://github.com/thoughtbot/laptop
+Add the `client id` and `client secret` to the `.env` as `YAMMER_KEY` and
+`YAMMER_SECRET`
 
-After setting up, you can run the application using [Heroku Local]:
-
-    % heroku local
-
-[Heroku Local]: https://devcenter.heroku.com/articles/heroku-local
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+After setting up, you can run the application with rails s. It will launch on
+http://localhost:3000, this can be changed in the .env
