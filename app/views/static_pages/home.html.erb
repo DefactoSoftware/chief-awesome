@@ -1,0 +1,9 @@
+<h1>Welcome to Chief Awesome!</h1>
+
+
+<% if current_user %>
+  Welcome: <%= current_user.name %>
+  <%= link_to "Log out", signout_path, class: "button" %>
+<% else %>
+  <%= link_to "Register", register_path %>
+<% end %>
