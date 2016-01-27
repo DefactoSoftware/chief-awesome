@@ -24,6 +24,7 @@ gem "title"
 gem "uglifier"
 gem "omniauth"
 gem "omniauth-yammer"
+gem "stripe"
 
 group :development do
   gem "quiet_assets"
