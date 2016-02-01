@@ -9,6 +9,7 @@ class SubscriptionsController < ApplicationController
     customer = Stripe::Customer.create(
       source: params[:stripeToken],
       plan: "ca-basic",
+      quantity: User.count,
       email: current_user.email
     )
 
