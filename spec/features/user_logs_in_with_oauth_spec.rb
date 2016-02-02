@@ -8,6 +8,6 @@ feature "log in" do
 
     click_link "Register with Yammer"
 
-    expect(page).to have_content("Welcome: foo")
+    expect(page).to have_content("Welcome: Han Solo")
   end
 end

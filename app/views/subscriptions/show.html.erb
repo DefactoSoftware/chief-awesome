@@ -7,8 +7,10 @@
   <h2>Your billing info</h2>
 
   Subscription owner: <%= @subscription.user.name %> <br>
+  <% if @stripe_customer.sources.data.any? %>
   Credit card: **** **** **** ****<%= @stripe_customer.sources.data[0].last4 %> <br>
   Expiration: <%= @stripe_customer.sources.data[0].exp_month %> / <%= @stripe_customer.sources.data[0].exp_year %>
+  <% end %>
   
   <hr>
   <%= link_to "Change billing info", edit_subscription_path %> | 

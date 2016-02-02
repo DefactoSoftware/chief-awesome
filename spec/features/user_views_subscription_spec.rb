@@ -1,5 +1,4 @@
 require "spec_helper"
-require "rails_helper"
 
 feature "subscription overview" do
 
@@ -15,5 +14,14 @@ feature "subscription overview" do
     visit root_url
     click_link "Subscription"
     expect(page).to have_content("Your Subscription")
+  end
+
+  scenario "subscription user count is updated for new users" do
+    user = create(:user)
+
+    sign_in_user
+    visit root_url
+    click_link "Subscription"
+    expect(page).to have_content("Number of users: 2")
   end
 end

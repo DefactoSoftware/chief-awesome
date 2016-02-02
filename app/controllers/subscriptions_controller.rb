@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   before_action :set_stripe_customer, only: [:show, :update, :destroy]
 
   def show
@@ -25,7 +25,7 @@ class SubscriptionsController < ApplicationController
     customer = @stripe_customer
     card_id = customer.sources.data[0].id 
 
-    customer.sources.retrieve(card_id).delete() 
+    customer.sources.retrieve(card_id).delete
     customer.sources.create(
       source: params[:stripeToken]
     ) 
@@ -35,10 +35,12 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     customer = @stripe_customer
-    card_id = customer.sources.data[0].id 
-    customer.sources.retrieve(card_id).delete()
-    customer.subscriptions.retrieve(@subscription.subscription_id).delete
+    card_id = customer.sources.data[0].id
+
+    card = customer.sources.retrieve(card_id).delete
     @subscription.destroy
+
+    customer.subscriptions.retrieve(@subscription.subscription_id).delete
 
     redirect_to subscription_path
   end
