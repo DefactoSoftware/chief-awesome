@@ -14,7 +14,8 @@ class SubscriptionsController < ApplicationController
     )
 
     resource.update(
-      stripe_id: customer.id
+      stripe_id: customer.id,
+      subscription_id: customer.subscriptions.data[0].id
     )
 
     redirect_to subscription_path
@@ -22,11 +23,9 @@ class SubscriptionsController < ApplicationController
 
   def update
     customer = @stripe_customer
-
     card_id = customer.sources.data[0].id 
 
     customer.sources.retrieve(card_id).delete() 
-
     customer.sources.create(
       source: params[:stripeToken]
     ) 
@@ -38,8 +37,9 @@ class SubscriptionsController < ApplicationController
     customer = @stripe_customer
     card_id = customer.sources.data[0].id 
     customer.sources.retrieve(card_id).delete()
-
+    customer.subscriptions.retrieve(@subscription.subscription_id).delete
     @subscription.destroy
+
     redirect_to subscription_path
   end
 

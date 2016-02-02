@@ -12,12 +12,10 @@
   
   <hr>
   <%= link_to "Change billing info", edit_subscription_path %> | 
-  <%= link_to "Remove this card", subscription_path, method: :delete %>
+  <%= link_to "Cancel subscription", subscription_path, method: :delete %>
+<% elsif Subscription.any? %>
+  <strong>Subscription owner:</strong> <%= Subscription.last.user.name %>.
 <% else %> 
   <hr>
   <%= link_to "Add billing info", new_subscription_path %>
 <% end %>
-
-
-
-
