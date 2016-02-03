@@ -30,7 +30,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
   config.order = :random
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
