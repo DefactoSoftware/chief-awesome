@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  username: postgres
+  password:
+  database: chief_awesome_test<%= ENV["TEST_ENV_NUMBER"] %>
+  min_messages: ERROR
+
