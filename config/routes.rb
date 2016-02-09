@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get "/signout", to: "sessions#destroy", as: :signout
   get "/auth/:provider/callback", to: "sessions#create"
+
+  resource :subscription
 end

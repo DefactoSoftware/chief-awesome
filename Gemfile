@@ -24,6 +24,7 @@ gem "title"
 gem "uglifier"
 gem "omniauth"
 gem "omniauth-yammer"
+gem "stripe"
 
 group :development do
   gem "quiet_assets"
@@ -41,7 +42,9 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails"
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
 end
 
 group :test do
@@ -53,6 +56,7 @@ group :test do
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
+  gem "vcr"
 end
 
 group :staging, :production do

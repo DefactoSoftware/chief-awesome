@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates :uid, presence: true
   validates :provider, presence: true
 
+  has_one :subscription
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
