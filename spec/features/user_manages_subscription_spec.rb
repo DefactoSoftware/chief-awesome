@@ -13,12 +13,12 @@ feature "user manages his or her subscription" do
     add_billing_info
   end
 
-  scenario "user subscribes with credit card" do 
+  scenario "user subscribes with credit card" do
     expect(page).to have_content("Credit card: **** **** **** ****4242")
     expect(page).to have_content("Subscription owner: Han Solo")
-    expect(Subscription.where(stripe_id: "cus_7plEoIo9TfMtNg", 
+    expect(Subscription.where(stripe_id: "cus_7plEoIo9TfMtNg",
                               subscription_id: "sub_7qWA7rCDQmllX7")).to be_present
-    expect(Subscription.last.user.name).to eq("Han Solo") 
+    expect(Subscription.last.user.name).to eq("Han Solo")
   end
 
   scenario "user changes credit card" do
@@ -32,7 +32,7 @@ feature "user manages his or her subscription" do
   scenario "user cancels subscription" do
     click_link "Cancel subscription"
 
-    expect(Subscription.where(stripe_id: "cus_7plEoIo9TfMtNg", 
+    expect(Subscription.where(stripe_id: "cus_7plEoIo9TfMtNg",
                               subscription_id: "sub_7qWA7rCDQmllX7")).not_to be_present
     expect(page).not_to have_content("Credit card: **** **** **** ****4242")
     expect(page).not_to have_content("Subscription owner: Han Solo")

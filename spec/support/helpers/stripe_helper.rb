@@ -27,7 +27,7 @@ module StripeHelper
   def stub_retrieve_card
     stub_request(:get, "https://api.stripe.com/v1/customers/cus_7plEoIo9TfMtNg/sources/card_16HGPKJeM8v0iz4rDttgXKVA").
             with(:headers => { "Authorization" => "Bearer #{ENV['STRIPE_SECRET_KEY']}" }).
-            to_return(:status => 200, :body => stripe_card_response, :headers => {}) 
+            to_return(:status => 200, :body => stripe_card_response, :headers => {})
   end
 
   def stub_new_card
