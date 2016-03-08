@@ -6,3 +6,29 @@
 @import "neat";
 @import "base/base";
 @import "refills/flashes";
+
+body {
+  padding: 1em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.7em;
+  margin-bottom: 0;
+}
+
+a {
+  // color: black;
+  text-decoration: underline;;
+}
+
+.questioner {
+  font-size: .9em;
+}
+
+.question {
+  margin-bottom: 1em;
+}

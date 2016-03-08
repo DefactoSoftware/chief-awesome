@@ -1,0 +1,23 @@
+</div class="question">
+   <%= @question.user.name %> asked:
+  <h1><%= @question.title %></h1>
+  <p><%= @question.description %></p>
+</div>
+<br>
+<div class="answers">
+  <% @question.answers.not_empty.each do |answer| %>
+    <%= answer.user.name %> answered:
+    <%= answer.body %> <br>
+  <% end %>
+</div>
+<br>
+<div>
+  <%= form_for @answer, url: question_answers_path(@question) do |f| %>
+    <%= f.label :body, "Answer" %>
+    <%= f.text_field :body %>
+
+    <%= f.submit %>
+  <% end %>
+</div>
+<hr>
+<%= link_to "Back", questions_path %>

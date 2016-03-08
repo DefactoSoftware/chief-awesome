@@ -1,0 +1,20 @@
+<h1>Questions</h1>
+<% @questions.each do |question| %>
+  <div class="question">
+  <%= link_to question_path(question) do %>
+    <h2><%= question.title %></h2>
+  <% end %>
+  <span class="questioner">
+    <%= question.user.name %> asked on
+    <span class="date">
+      <%= I18n.l(question.created_at.to_date, format: :short) %>
+    </span>
+  </span>
+  <br>
+  This question has
+  <%= pluralize(question.answers.count, "answer") %>
+  </div>
+<% end %>
+<hr>
+<%= link_to "Add Question", new_question_path %>
+

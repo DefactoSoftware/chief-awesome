@@ -1,3 +1,4 @@
+
 class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
@@ -5,6 +6,8 @@ class User < ActiveRecord::Base
   validates :provider, presence: true
 
   has_one :subscription
+  has_many :questions
+  has_many :answers
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -15,3 +18,16 @@ class User < ActiveRecord::Base
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  email      :string
+#  uid        :string
+#  provider   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#

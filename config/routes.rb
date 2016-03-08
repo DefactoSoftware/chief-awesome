@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create"
 
   resource :subscription
+  resources :questions do
+    resources :answers, only: [:create, :update, :destroy]
+  end
 end

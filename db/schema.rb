@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126135339) do
+ActiveRecord::Schema.define(version: 20160308143743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "question_id", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,9 +36,25 @@ ActiveRecord::Schema.define(version: 20160126135339) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "team_id"], name: "index_memberships_on_user_id_and_team_id", unique: true, using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
+  end
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "stripe_id"
@@ -38,6 +62,14 @@ ActiveRecord::Schema.define(version: 20160126135339) do
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +81,6 @@ ActiveRecord::Schema.define(version: 20160126135339) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
 end

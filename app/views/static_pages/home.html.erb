@@ -6,6 +6,7 @@
 <nav>
   <ul>
     <li><%= link_to "Subscription", subscription_path %></li>
+    <li><%= link_to "Questions", questions_path %></li>
     <% if current_user %>
       <li><%= link_to "Log out", signout_path, class: "button" %></li>
     <% else %>
