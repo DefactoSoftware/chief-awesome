@@ -1,0 +1,23 @@
+<h1>Your Subscription</h1>
+<p><strong>Number of users:</strong> <%= User.count %></p>
+<p><strong>Total Price:</strong> <%= @subscription.cost_per_month %>€ / month</p>
+
+
+<% if @subscription.stripe_id %>
+  <h2>Your billing info</h2>
+
+  Subscription owner: <%= @subscription.user.name %> <br>
+  <% if @stripe_customer.sources.data.any? %>
+  Credit card: **** **** **** ****<%= @stripe_customer.sources.data[0].last4 %> <br>
+  Expiration: <%= @stripe_customer.sources.data[0].exp_month %> / <%= @stripe_customer.sources.data[0].exp_year %>
+  <% end %>
+  
+  <hr>
+  <%= link_to "Change billing info", edit_subscription_path %> | 
+  <%= link_to "Cancel subscription", subscription_path, method: :delete %>
+<% elsif Subscription.any? %>
+  <strong>Subscription owner:</strong> <%= Subscription.last.user.name %>.
+<% else %> 
+  <hr>
+  <%= link_to "Add billing info", new_subscription_path %>
+<% end %>

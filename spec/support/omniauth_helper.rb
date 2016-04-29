@@ -3,8 +3,8 @@ def set_omniauth(opts = {})
     :provider => :yammer,
     :uuid     => "1234",
     :yammer => {
-      :email => "foobar@example.com",
-      :name => "foo"
+      :email => "123@example.com",
+      :name => "Han Solo"
     }
   }
 

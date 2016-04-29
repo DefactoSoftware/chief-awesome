@@ -1,9 +1,18 @@
 <h1>Welcome to Chief Awesome!</h1>
+  <% if current_user %>
+    Welcome: <%= current_user.name %>
+  <% end %>
+
+<nav>
+  <ul>
+    <li><%= link_to "Subscription", subscription_path %></li>
+    <% if current_user %>
+      <li><%= link_to "Log out", signout_path, class: "button" %></li>
+    <% else %>
+      <li><%= link_to "Register", register_path %></li>
+    <% end %>
+  </ul>
+</nav>
 
 
-<% if current_user %>
-  Welcome: <%= current_user.name %>
-  <%= link_to "Log out", signout_path, class: "button" %>
-<% else %>
-  <%= link_to "Register", register_path %>
-<% end %>
+

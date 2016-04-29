@@ -4,19 +4,18 @@ ruby "2.3.0"
 
 gem "autoprefixer-rails"
 gem "bourbon", "~> 4.2.0"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails"
 gem "delayed_job_active_record"
 gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
 gem "jquery-turbolinks"
 gem "neat", "~> 1.7.0"
-gem "newrelic_rpm", ">= 3.9.8"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 4.2.0"
+gem "rails", "~> 5.0.0.beta2"
 gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
@@ -25,6 +24,7 @@ gem "title"
 gem "uglifier"
 gem "omniauth"
 gem "omniauth-yammer"
+gem "stripe"
 
 group :development do
   gem "quiet_assets"
@@ -42,7 +42,9 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.4.0"
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
 end
 
 group :test do
@@ -54,6 +56,7 @@ group :test do
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
+  gem "vcr"
 end
 
 group :staging, :production do
