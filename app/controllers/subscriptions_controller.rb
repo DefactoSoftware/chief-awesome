@@ -1,5 +1,18 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id              :integer          not null, primary key
+#  stripe_id       :string
+#  subscription_id :string
+#  user_id         :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class SubscriptionsController < ApplicationController
   before_action :authorize
+  before_action :authorize_owner
   before_action :set_stripe_customer, only: [:show, :update, :destroy]
 
   def show

@@ -21,5 +21,4 @@ def set_omniauth(opts = {})
       "name" => user_hash[:name],
     }
   }
-
 end

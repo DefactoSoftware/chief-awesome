@@ -1,17 +1,15 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: memberships
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  email      :string
-#  uid        :string
-#  provider   :string
+#  user_id    :integer
+#  team_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class UsersController < ApplicationController
-  def new
-  end
+class Membership < ActiveRecord::Base
+   belongs_to :user
+   belongs_to :team
 end

@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: teams
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  email      :string
-#  uid        :string
-#  provider   :string
+#  domain     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
-class UsersController < ApplicationController
-  def new
+class TeamsController < ApplicationController
+  def index
   end
 end
